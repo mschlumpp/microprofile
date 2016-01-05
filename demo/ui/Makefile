@@ -16,8 +16,10 @@ CFLAGS+=-DMICROPROFILE_GPU_TIMERS_MULTITHREADED=1
 CFLAGS+=-g -O0 -Wno-invalid-offsetof
 
 CPPFLAGS=$(CFLAGS)
-CPPFLAGS+=-stdlib=libc++ -std=c++11
-
+CPPFLAGS+=-std=c++11
+ifeq ($(UNAME_S),Darwin)
+CPPFLAGS+=-stdlib=libc++
+endif
 
 CPP_SOURCES = microprofile.cpp fakework.cpp demo.cpp
 C_SOURCES = ../glew/glew.c
